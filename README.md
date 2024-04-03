@@ -1,6 +1,6 @@
 # 🌟 Criptografia em Java 🌟
 
-Este é um programa encantador em Java que oferece operações de criptografia e descriptografia utilizando dois métodos: a Cifra de César e o Código Morse. 
+Este é um programa em Java que oferece operações de criptografia e descriptografia utilizando dois métodos: a Cifra de César e o Código Morse. 
 
 ## 📜 Arquivos
 
