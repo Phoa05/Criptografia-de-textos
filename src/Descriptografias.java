@@ -5,6 +5,7 @@ public class Descriptografias {
     public static String decifraCesar(String texto, int chave) {
         StringBuilder textoDecifrado = new StringBuilder();
 
+        // Itera sobre cada caractere do texto fornecido
         for (int i = 0; i < texto.length(); i++) {
             char caractere = texto.charAt(i);
 
@@ -57,19 +58,19 @@ public class Descriptografias {
 
     public static String decifraMorse(String codigoMorse) {
         StringBuilder resultado = new StringBuilder();
-        String[] palavras = codigoMorse.split(" / ");
+        String[] palavras = codigoMorse.split(" / "); // Divide o texto em palavras separadas por " / "
 
         for (String palavraMorse : palavras) {
             String[] letrasMorse = palavraMorse.split(" ");
             for (String letraMorse : letrasMorse) {
                 Character caractere = morseCodeMap.get(letraMorse);
                 if (caractere != null) {
-                    resultado.append(caractere);
+                    resultado.append(caractere); // Adiciona o caractere ao resultado
                 }
             }
             resultado.append(" ");
         }
 
-        return resultado.toString().trim();
+        return resultado.toString().trim(); // Retorna o texto decifrado sem espaços extras no início ou no final
     }
 }

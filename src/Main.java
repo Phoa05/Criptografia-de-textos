@@ -1,31 +1,35 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in); // Inicialização do objeto Scanner para entrada de dados
 
+        // Solicitação da opção desejada ao usuário
         System.out.println("O que deseja Fazer:");
         System.out.println("1. Criptografar texto");
         System.out.println("2. Descriptografar texto");
-        int opcao = scanner.nextInt();
+        int opcao = scanner.nextInt(); // Leitura da opção escolhida pelo usuário
         scanner.nextLine(); // Limpar o buffer
 
-        switch (opcao){
+        switch (opcao) {
             case 1:
                 System.out.println("Escolha a criptografia desejada:");
                 System.out.println("1. Cifra de César");
                 System.out.println("2. Código Morse");
                 int cOption = scanner.nextInt();
                 scanner.nextLine(); // Limpar o buffer
-                System.out.println("Digite o texto que deseja criptografar:");
-                String textoOriginal = scanner.nextLine();
+
+                String textoOriginal;
+                // Loop para garantir que o texto inserido pelo usuário não contenha caracteres inválidos
+                do {
+                    System.out.println("Digite o texto que deseja criptografar (sem caracteres acentuados ou números):");
+                    textoOriginal = scanner.nextLine(); // Leitura do texto original
+                } while (verificarCaracteresInvalidos(textoOriginal)); // Verificar se o texto contém caracteres inválidos
 
                 switch (cOption) {
                     case 1:
                         System.out.println("Digite a chave de criptografia para a Cifra de César:");
-                        int chaveCifra = scanner.nextInt();
+                        int chaveCifra = scanner.nextInt(); // Leitura da chave de criptografia
                         String textoCifra = Criptografia.cifraDeCesar(textoOriginal, chaveCifra);
                         System.out.println("Texto criptografado pela Cifra de César: " + textoCifra);
                         break;
@@ -42,12 +46,12 @@ public class Main {
                 System.out.println("1. Cifra de César");
                 System.out.println("2. Código Morse");
                 int dOption = scanner.nextInt();
-                scanner.nextLine(); // Limpar o buffer
+                scanner.nextLine();
 
                 System.out.println("Digite o texto que deseja descriptografar:");
                 String textoCriptografado = scanner.nextLine();
 
-                switch (dOption){
+                switch (dOption) {
                     case 1:
                         System.out.println("Digite a chave de criptografia usada na Cifra de César:");
                         int chaveCifra = scanner.nextInt();
@@ -69,4 +73,8 @@ public class Main {
         scanner.close();
     }
 
+    // Método para verificar se o texto contém caracteres inválidos (números e caracteres acentuados)
+    private static boolean verificarCaracteresInvalidos(String texto) {
+        return texto.matches(".*[áàãâéèêíìîóòõôúùûç\\d].*");
+    }
 }
